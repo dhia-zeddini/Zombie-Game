@@ -16,6 +16,7 @@ public class MouseMouvement : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+       
         
     }
 
