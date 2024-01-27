@@ -11,5 +11,10 @@ public class Bullet : MonoBehaviour
             print("hit" + collision.gameObject + " !");
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            print("hit wall");
+            Destroy(gameObject);
+        }
     }
 }
