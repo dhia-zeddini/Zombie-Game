@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    public Camera playerCamera;
+  //  public Camera playerCamera;
 
     //shooting
     public bool isShooting, readyToShoot;
@@ -105,7 +105,7 @@ public class Weapon : MonoBehaviour
     {
         //shooting from the middle of the screen to check where we pointing at
 
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         Vector3 targetPoint;
