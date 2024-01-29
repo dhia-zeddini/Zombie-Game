@@ -35,7 +35,13 @@ public class Weapon : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
-   
+   //weapon model
+   public enum WeaponModel
+    {
+        Pistol,
+        Shotgun
+    }
+    public WeaponModel thisWeaponModel;
 
     //shooting mode
     public enum ShootingMode
@@ -85,7 +91,7 @@ public class Weapon : MonoBehaviour
         //auto reload when the magazine is empty
         if(readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
         {
-            Reload();
+           // Reload();
         }
 
         if (AmmoManager.Instace.ammoDisplay != null)
@@ -100,7 +106,8 @@ public class Weapon : MonoBehaviour
 
         muzzleEffect.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");
-        SoundManager.Instace.shootingSound.Play();
+         SoundManager.Instace.shootingSound.Play();
+       // SoundManager.Instace.PlayShootingSound(thisWeaponModel);
 
 
         readyToShoot = false;
@@ -137,6 +144,9 @@ public class Weapon : MonoBehaviour
     private void Reload()
     {
         SoundManager.Instace.reloadingSound.Play();
+       // SoundManager.Instace.PlayReloadSound(thisWeaponModel);
+
+        animator.SetTrigger("RELOAD");
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
     }
@@ -183,4 +193,6 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Destroy(bullet);
     }
+
+
 }
