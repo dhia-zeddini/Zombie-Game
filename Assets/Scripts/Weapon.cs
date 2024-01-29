@@ -7,6 +7,8 @@ using TMPro;
 public class Weapon : MonoBehaviour
 {
 
+    public bool isActiveWeapon;
+
   //  public Camera playerCamera;
 
     //shooting
@@ -68,39 +70,43 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bulletsLeft == 0 && isShooting)
+        if (isActiveWeapon)
         {
-            SoundManager.Instace.emptyMagazineSound.Play();
-        }
-        if (currentShootingMode == ShootingMode.Auto)
-        {
-            //holding down left mouse btn
-            isShooting = Input.GetKey(KeyCode.Mouse0);
-        }else if(currentShootingMode==ShootingMode.single|| currentShootingMode == ShootingMode.Brust)
-        {
-            //clicking left mouse btn once
-            isShooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
+            if (bulletsLeft == 0 && isShooting)
+            {
+                SoundManager.Instace.emptyMagazineSound.Play();
+            }
+            if (currentShootingMode == ShootingMode.Auto)
+            {
+                //holding down left mouse btn
+                isShooting = Input.GetKey(KeyCode.Mouse0);
+            }
+            else if (currentShootingMode == ShootingMode.single || currentShootingMode == ShootingMode.Brust)
+            {
+                //clicking left mouse btn once
+                isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+            }
 
-        if (readyToShoot && isShooting&&bulletsLeft>0)
-        {
-            burstBulletsLeft = bulletsPerBurst;
-            FireWeapon();
-        }
-        //reload manualy
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
-        {
-            Reload();
-        }
-        //auto reload when the magazine is empty
-        if(readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
-        {
-           // Reload();
-        }
+            if (readyToShoot && isShooting && bulletsLeft > 0)
+            {
+                burstBulletsLeft = bulletsPerBurst;
+                FireWeapon();
+            }
+            //reload manualy
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
+            {
+                Reload();
+            }
+            //auto reload when the magazine is empty
+            if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
+            {
+                // Reload();
+            }
 
-        if (AmmoManager.Instace.ammoDisplay != null)
-        {
-            AmmoManager.Instace.ammoDisplay.text = $"{bulletsLeft/bulletsPerBurst}/{magazineSize/bulletsPerBurst}";
+            if (AmmoManager.Instace.ammoDisplay != null)
+            {
+                AmmoManager.Instace.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
+            }
         }
     }
 

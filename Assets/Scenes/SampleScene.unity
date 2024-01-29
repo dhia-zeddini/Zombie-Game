@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b817be14b44a09a4989b8985b37349e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.2
@@ -534,7 +535,7 @@ MonoBehaviour:
   shootingSound: {fileID: 393526587}
   PistolShot: {fileID: 8300000, guid: 14c9615a78b26eb449559bdb16e8533c, type: 3}
   M16Shot: {fileID: 8300000, guid: 1104a884746b6784aa9d2fce142e1ddc, type: 3}
-  reloadingSoundPistol: {fileID: 0}
+  reloadingSoundPistol: {fileID: 393526591}
   reloadingSoundM16: {fileID: 393526592}
   emptyMagazineSound: {fileID: 393526590}
 --- !u!4 &393526589
@@ -1864,7 +1865,7 @@ PrefabInstance:
     - target: {fileID: 8576633286080622491, guid: f8d949eb74a2d454bab29d9f072cf1c5,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d949eb74a2d454bab29d9f072cf1c5, type: 3}
@@ -2137,7 +2138,7 @@ PrefabInstance:
     - target: {fileID: 4978969436553163950, guid: 832f6987959c1284a94ed6e5a4c2b37c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4978969436553163951, guid: 832f6987959c1284a94ed6e5a4c2b37c,
         type: 3}
@@ -2689,7 +2690,7 @@ GameObject:
   - component: {fileID: 1652294634}
   - component: {fileID: 1652294633}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: WeaponBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
