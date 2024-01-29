@@ -35,11 +35,15 @@ public class Weapon : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+    //original weapon position
+    public Vector3 spawnPosition;
+
    //weapon model
    public enum WeaponModel
     {
         Pistol,
-        Shotgun
+        Shotgun,
+        M16
     }
     public WeaponModel thisWeaponModel;
 
@@ -106,8 +110,8 @@ public class Weapon : MonoBehaviour
 
         muzzleEffect.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("RECOIL");
-         SoundManager.Instace.shootingSound.Play();
-       // SoundManager.Instace.PlayShootingSound(thisWeaponModel);
+        // SoundManager.Instace.shootingSound.Play();
+        SoundManager.Instace.PlayShootingSound(thisWeaponModel);
 
 
         readyToShoot = false;
@@ -143,8 +147,8 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
-        SoundManager.Instace.reloadingSound.Play();
-       // SoundManager.Instace.PlayReloadSound(thisWeaponModel);
+       // SoundManager.Instace.reloadingSound.Play();
+        SoundManager.Instace.PlayReloadSound(thisWeaponModel);
 
         animator.SetTrigger("RELOAD");
         isReloading = true;

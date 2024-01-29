@@ -8,9 +8,15 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instace { get; set; }
 
     public AudioSource shootingSound;
-    public AudioSource reloadingSound;
-   /* public AudioSource shootingSoundShotgun;
-    public AudioSource reloadingSoundShotgun;*/
+   
+
+    public AudioClip PistolShot;
+    public AudioClip M16Shot;
+
+    public AudioSource reloadingSoundPistol;
+    public AudioSource reloadingSoundM16;
+    /* public AudioSource shootingSoundShotgun;
+     public AudioSource reloadingSoundShotgun;*/
     public AudioSource emptyMagazineSound;
     private void Awake()
     {
@@ -24,30 +30,38 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-  /*  public void PlayShootingSound(WeaponModel weapon)
+    public void PlayShootingSound(WeaponModel weapon)
     {
         switch (weapon)
         {
             case WeaponModel.Pistol:
-                shootingSound.Play();
+                shootingSound.PlayOneShot(PistolShot);
                 break;
             case WeaponModel.Shotgun:
                 //shotgun sound
-                shootingSoundShotgun.Play();
+               // shootingSoundShotgun.Play();
+                break;
+            case WeaponModel.M16:
+                //M16 sound
+                shootingSound.PlayOneShot(M16Shot);
                 break;
         }
-    }*/
-   /* public void PlayReloadSound(WeaponModel weapon)
+    }
+    public void PlayReloadSound(WeaponModel weapon)
     {
         switch (weapon)
         {
             case WeaponModel.Pistol:
-                reloadingSound.Play();
+                reloadingSoundPistol.Play();
                 break;
             case WeaponModel.Shotgun:
                 //shotgun sound
-                reloadingSoundShotgun.Play();
+                //reloadingSoundShotgun.Play();
+                break;
+            case WeaponModel.M16:
+                //M16 sound
+                reloadingSoundM16.Play();
                 break;
         }
-    }*/
+    }
 }
