@@ -72,6 +72,7 @@ public class Weapon : MonoBehaviour
     {
         if (isActiveWeapon)
         {
+         //   animator.enabled = true;
             if (bulletsLeft == 0 && isShooting)
             {
                 SoundManager.Instace.emptyMagazineSound.Play();
@@ -103,10 +104,10 @@ public class Weapon : MonoBehaviour
                 // Reload();
             }
 
-            if (AmmoManager.Instace.ammoDisplay != null)
+          /*  if (AmmoManager.Instace.ammoDisplay != null)
             {
                 AmmoManager.Instace.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
-            }
+            }*/
         }
     }
 

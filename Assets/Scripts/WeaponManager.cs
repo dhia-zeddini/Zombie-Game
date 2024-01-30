@@ -65,6 +65,7 @@ public class WeaponManager : MonoBehaviour
         pickedupWeapon.transform.localRotation= Quaternion.Euler(1, 1, 1);
         pickedupWeapon.transform.localScale = new Vector3(1, 1, 1);
         weapon.isActiveWeapon = true;
+        //weapon.GetComponent<Animator>().enabled = true;
     }
 
     private void DropCurrentWeapon(GameObject pickedupWeapon)
