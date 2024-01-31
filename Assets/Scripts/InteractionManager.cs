@@ -7,7 +7,7 @@ public class InteractionManager : MonoBehaviour
     public static InteractionManager Instace { get; set; }
     public Weapon hoveredWeapon = null;
 
-   
+    public AmmoBox hoveredAmmoBox = null;
     private void Awake()
     {
         if (Instace != null && Instace != this)
@@ -18,6 +18,11 @@ public class InteractionManager : MonoBehaviour
         {
             Instace = this;
         }
+    }
+
+    private AmmoBox GetHoveredAmmoBox()
+    {
+        return hoveredAmmoBox;
     }
 
     private void Update()
@@ -35,7 +40,7 @@ public class InteractionManager : MonoBehaviour
                 hoveredWeapon = objectHitByRaycast.GetComponent<Weapon>();
                 hoveredWeapon.GetComponent<Outline>().enabled = true;
                
-                print("weapon selected");
+               // print("weapon selected");
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     WeaponManager.Instace.PickupWeapon(objectHitByRaycast.gameObject);
@@ -48,6 +53,29 @@ public class InteractionManager : MonoBehaviour
                 {
                     hoveredWeapon.GetComponent<Outline>().enabled = false;
                    // hoveredWeapon.GetComponent<Weapon>().enabled = false;
+                }
+            }
+
+            //ammoBox
+            if (objectHitByRaycast.GetComponent<AmmoBox>() )
+            {
+                hoveredAmmoBox = objectHitByRaycast.GetComponent<AmmoBox>();
+                hoveredAmmoBox.GetComponent<Outline>().enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                //print("AmmoBox selected");
+                    WeaponManager.Instace.PickupAmmoBox(hoveredAmmoBox);
+                    Destroy(objectHitByRaycast.gameObject);
+                    
+                }
+            }
+            else
+            {
+                if (hoveredAmmoBox)
+                {
+                    hoveredAmmoBox.GetComponent<Outline>().enabled = false;
+                    
                 }
             }
         }

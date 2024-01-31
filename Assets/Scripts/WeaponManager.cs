@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Weapon;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class WeaponManager : MonoBehaviour
 
     public List<GameObject> weaponSlots;
     public GameObject activeWeaponSlot;
+
+    [Header("Ammo")]
+    public int totalM16Ammo = 0;
+    public int totalPistolAmmo = 0;
+    public int totalShotgunAmmo = 0;
+
     private void Awake()
     {
         if (Instace != null && Instace != this)
@@ -84,6 +91,23 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public void PickupAmmoBox(AmmoBox ammo)
+    {
+        switch(ammo.ammoType)
+        {
+            case AmmoBox.AmmoType.PistolAmmo:
+                totalPistolAmmo += ammo.ammoAmount;
+                break;
+            case AmmoBox.AmmoType.M16Ammo:
+                totalM16Ammo += ammo.ammoAmount;
+                break;
+            case AmmoBox.AmmoType.ShotgunAmmo:
+                totalShotgunAmmo += ammo.ammoAmount;
+                break;
+
+        }
+    }
+
     public void SwitchActiveSlot(int slotNumber)
     {
         if (activeWeaponSlot.transform.childCount > 0)
@@ -97,6 +121,39 @@ public class WeaponManager : MonoBehaviour
         {
             Weapon newWeapn = activeWeaponSlot.transform.GetChild(0).GetComponent<Weapon>();
             newWeapn.isActiveWeapon = true;
+        }
+    }
+
+    public void DecreaseTotalAmmo(int bulletsLeftsToDecrease, Weapon.WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case Weapon.WeaponModel.Pistol:
+                totalPistolAmmo -= bulletsLeftsToDecrease;
+                break;
+            case Weapon.WeaponModel.M16:
+                totalM16Ammo -= bulletsLeftsToDecrease;
+                break;
+            case Weapon.WeaponModel.Shotgun:
+                totalShotgunAmmo -= bulletsLeftsToDecrease;
+                break;
+
+
+        }
+    }
+    public int CheckAmmoLeftFor(WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case WeaponModel.Pistol:
+                return totalPistolAmmo;
+            case WeaponModel.M16:
+                return totalM16Ammo;
+            case WeaponModel.Shotgun:
+                return totalShotgunAmmo;
+
+            default:
+                return 0;
         }
     }
 }

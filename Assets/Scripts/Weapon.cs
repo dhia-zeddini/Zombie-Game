@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
                 FireWeapon();
             }
             //reload manualy
-            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false && WeaponManager.Instace.CheckAmmoLeftFor(thisWeaponModel)>0)
             {
                 Reload();
             }
@@ -111,12 +111,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
+
+
     private void FireWeapon()
     {
         bulletsLeft--;
 
         muzzleEffect.GetComponent<ParticleSystem>().Play();
-        animator.SetTrigger("RECOIL");
+     //   animator.SetTrigger("RECOIL");
         // SoundManager.Instace.shootingSound.Play();
         SoundManager.Instace.PlayShootingSound(thisWeaponModel);
 
@@ -157,14 +159,23 @@ public class Weapon : MonoBehaviour
        // SoundManager.Instace.reloadingSound.Play();
         SoundManager.Instace.PlayReloadSound(thisWeaponModel);
 
-        animator.SetTrigger("RELOAD");
+       // animator.SetTrigger("RELOAD");
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
     }
 
     public void ReloadCompleted()
     {
-        bulletsLeft = magazineSize;
+        if (WeaponManager.Instace.CheckAmmoLeftFor(thisWeaponModel)>magazineSize)
+        {          
+             bulletsLeft = magazineSize;
+            WeaponManager.Instace.DecreaseTotalAmmo(bulletsLeft, thisWeaponModel);
+        }
+        else
+        {
+            bulletsLeft = WeaponManager.Instace.CheckAmmoLeftFor(thisWeaponModel);
+            WeaponManager.Instace.DecreaseTotalAmmo(bulletsLeft, thisWeaponModel);
+        }
         isReloading = false;
     }
     private void ResetShot()

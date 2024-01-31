@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4978969436553163950}
   - component: {fileID: 4526756094920452398}
   - component: {fileID: 763621247}
+  - component: {fileID: 763621252}
   m_Layer: 0
   m_Name: pistol2
   m_TagString: Untagged
@@ -118,7 +119,7 @@ MonoBehaviour:
   isReloading: 0
   spawnPosition: {x: 0.46, y: 2.57, z: 2.78}
   thisWeaponModel: 0
-  currentShootingMode: 1
+  currentShootingMode: 0
 --- !u!95 &4526756094920452398
 Animator:
   serializedVersion: 5
@@ -153,6 +154,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.26056075, y: 0.971557, z: 1.6699742}
   m_Center: {x: 0, y: 0.050266087, z: -0.10166764}
+--- !u!114 &763621252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643866845136514581}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7322035813458491516
 GameObject:
   m_ObjectHideFlags: 0
