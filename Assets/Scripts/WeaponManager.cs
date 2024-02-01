@@ -69,7 +69,7 @@ public class WeaponManager : MonoBehaviour
         Weapon weapon = pickedupWeapon.GetComponent<Weapon>();
 
         pickedupWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x, weapon.spawnPosition.y, weapon.spawnPosition.z);
-        pickedupWeapon.transform.localRotation= Quaternion.Euler(1, 1, 1);
+        pickedupWeapon.transform.localRotation= Quaternion.Euler(0, 0, 0);
         pickedupWeapon.transform.localScale = new Vector3(1, 1, 1);
         weapon.isActiveWeapon = true;
         //weapon.GetComponent<Animator>().enabled = true;

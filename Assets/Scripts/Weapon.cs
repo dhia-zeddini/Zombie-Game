@@ -9,29 +9,37 @@ public class Weapon : MonoBehaviour
 
     public bool isActiveWeapon;
 
-  //  public Camera playerCamera;
+    //  public Camera playerCamera;
 
+    [Header("Shooting")]
     //shooting
     public bool isShooting, readyToShoot;
     bool allowReset = true;
     public float shootingDelay = 2f;
 
+    [Header("Burst")]
     //brust
     public int bulletsPerBurst = 3;
     public int burstBulletsLeft;
 
+    [Header("Spread")]
     //spread
     public float spreadIntensity;
+    public float hipSpreadIntensity;
+    public float adsSpreadIntensity;
 
+    [Header("Bullet")]
     //bullet
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public float bulletVelocity = 30;
     public float bulletPrefabLifeTime = 3f;
 
+    [Header("Animation")]
     public GameObject muzzleEffect;
     private Animator animator;
 
+    [Header("Loading")]
     //loading
     public float reloadTime;
     public int magazineSize, bulletsLeft;
@@ -59,12 +67,17 @@ public class Weapon : MonoBehaviour
 
     public ShootingMode currentShootingMode;
 
+
+    //ADS
+    bool isADS;
+
     private void Awake()
     {
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
         animator=GetComponent<Animator>();
         bulletsLeft = magazineSize;
+        spreadIntensity = hipSpreadIntensity;
     }
 
     // Update is called once per frame
@@ -72,7 +85,18 @@ public class Weapon : MonoBehaviour
     {
         if (isActiveWeapon)
         {
-         //   animator.enabled = true;
+            GetComponent<Animator>().enabled = true;
+            GetComponent<Outline>().enabled = false;
+            if (Input.GetMouseButtonDown(1)) 
+            {
+                EnterADS();
+
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+              ExitADS();
+            }
+           
             if (bulletsLeft == 0 && isShooting)
             {
                 SoundManager.Instace.emptyMagazineSound.Play();
@@ -112,13 +136,37 @@ public class Weapon : MonoBehaviour
     }
 
 
-
+    private void EnterADS() {
+        animator.SetTrigger("enterADS");
+        isADS = true;
+        HUDManager.Instace.middleDot.SetActive(false);
+        spreadIntensity = adsSpreadIntensity;
+    }
+    private void ExitADS()
+    {
+        animator.SetTrigger("exitADS");
+        isADS = false;
+        HUDManager.Instace.middleDot.SetActive(true);
+        spreadIntensity = hipSpreadIntensity;
+    }
     private void FireWeapon()
     {
         bulletsLeft--;
 
         muzzleEffect.GetComponent<ParticleSystem>().Play();
-     //   animator.SetTrigger("RECOIL");
+
+        if (isADS)
+        {
+            //recoil ads
+            animator.SetTrigger("RECOIL_ADS");
+          
+        }
+        else
+        {
+             animator.SetTrigger("RECOIL");
+
+        }
+
         // SoundManager.Instace.shootingSound.Play();
         SoundManager.Instace.PlayShootingSound(thisWeaponModel);
 
@@ -203,11 +251,11 @@ public class Weapon : MonoBehaviour
             targetPoint = ray.GetPoint(100);
         }
         Vector3 direction = targetPoint - bulletSpawn.position;
-        float x = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
+        float z = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
         float y = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
 
         // returnig the shooting direction and spread
-        return direction + new Vector3(x, y, 0);
+        return direction + new Vector3(0, y, z);
     }
 
     private IEnumerator DestroyBulletAfterTime(GameObject bullet, float delay)

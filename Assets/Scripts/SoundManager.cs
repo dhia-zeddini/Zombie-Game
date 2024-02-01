@@ -12,11 +12,12 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip PistolShot;
     public AudioClip M16Shot;
+    public AudioClip ShotgunShot;
 
     public AudioSource reloadingSoundPistol;
     public AudioSource reloadingSoundM16;
-    /* public AudioSource shootingSoundShotgun;
-     public AudioSource reloadingSoundShotgun;*/
+    /*public AudioSource shootingSoundShotgun;
+    public AudioSource reloadingSoundShotgun;*/
     public AudioSource emptyMagazineSound;
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class SoundManager : MonoBehaviour
                 break;
             case WeaponModel.Shotgun:
                 //shotgun sound
-               // shootingSoundShotgun.Play();
+                shootingSound.PlayOneShot(ShotgunShot);
                 break;
             case WeaponModel.M16:
                 //M16 sound
@@ -57,6 +58,7 @@ public class SoundManager : MonoBehaviour
             case WeaponModel.Shotgun:
                 //shotgun sound
                 //reloadingSoundShotgun.Play();
+                reloadingSoundM16.Play();
                 break;
             case WeaponModel.M16:
                 //M16 sound

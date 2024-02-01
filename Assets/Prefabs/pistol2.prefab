@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5643866845136514581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.46, y: 2.57, z: 2.78}
-  m_LocalScale: {x: 0.25, y: 0.33333, z: 0.05}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8920116824637526882}
@@ -106,7 +106,9 @@ MonoBehaviour:
   shootingDelay: 0.5
   bulletsPerBurst: 1
   burstBulletsLeft: 0
-  spreadIntensity: 0.05
+  spreadIntensity: 0
+  hipSpreadIntensity: 0.4
+  adsSpreadIntensity: 0.04
   bulletPrefab: {fileID: 6778308934511309663, guid: 3146ef7c4187a76478825f2aae7f845e,
     type: 3}
   bulletSpawn: {fileID: 8920116824637526882}
