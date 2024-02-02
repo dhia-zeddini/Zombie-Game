@@ -207,7 +207,7 @@ public class Weapon : MonoBehaviour
        // SoundManager.Instace.reloadingSound.Play();
         SoundManager.Instace.PlayReloadSound(thisWeaponModel);
 
-       // animator.SetTrigger("RELOAD");
+        animator.SetTrigger("RELOAD");
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
     }

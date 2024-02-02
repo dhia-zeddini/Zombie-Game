@@ -4810,6 +4810,8 @@ GameObject:
   - component: {fileID: 5828403118461721424}
   - component: {fileID: 5125993991511772642}
   - component: {fileID: 8576633286080622491}
+  - component: {fileID: 543821949}
+  - component: {fileID: 543821950}
   m_Layer: 0
   m_Name: shotgun1
   m_TagString: Untagged
@@ -4923,6 +4925,8 @@ MonoBehaviour:
   bulletsPerBurst: 1
   burstBulletsLeft: 0
   spreadIntensity: 0
+  hipSpreadIntensity: 0.5
+  adsSpreadIntensity: 0.05
   bulletPrefab: {fileID: 6778308934511309663, guid: 3146ef7c4187a76478825f2aae7f845e,
     type: 3}
   bulletSpawn: {fileID: 5125993990286712051}
@@ -4934,5 +4938,36 @@ MonoBehaviour:
   bulletsLeft: 0
   isReloading: 0
   spawnPosition: {x: 0.4637131, y: 2.41, z: 3.72}
-  thisWeaponModel: 2
+  thisWeaponModel: 1
   currentShootingMode: 0
+--- !u!65 &543821949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468031517498227333}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.34545305, y: 1.4224896, z: 6.216007}
+  m_Center: {x: 0, y: -0.037159324, z: -0.41183197}
+--- !u!114 &543821950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468031517498227333}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
